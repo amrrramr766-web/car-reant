@@ -37,4 +37,21 @@ class BookingCubit extends Cubit<BookingState> {
       emit(BookingFailure(e.toString()));
     }
   }
+
+  // Cubit لا يجب أن يعرف تفاصيل SQL مباشرة
+  // استعمل BookingData أو أي service لجلب البيانات
+  Future<void> fetchUserBookings(int userId) async {
+    emit(BookingLoading());
+    try {
+      final Either<StatusRequest, List<dynamic>> response = await bookingData
+          .getBookingsByUserId(userId);
+
+      response.fold(
+        (failure) => emit(BookingFailure(failure.toString())),
+        (bookings) => emit(BookingLoaded(bookings)),
+      );
+    } catch (e) {
+      emit(BookingFailure("Failed to load bookings: $e"));
+    }
+  }
 }

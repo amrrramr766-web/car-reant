@@ -1,5 +1,6 @@
 import 'package:car_rent/core/class/crud.dart';
 import 'package:car_rent/core/class/states_request.dart';
+import 'package:car_rent/data/model/booking_history_model.dart';
 import 'package:car_rent/link_api.dart';
 import 'package:dartz/dartz.dart';
 
@@ -53,5 +54,20 @@ class BookingData {
         return Right(bookingId);
       },
     );
+  }
+
+  Future<Either<StatusRequest, List<dynamic>>> getBookingsByUserId(
+    int userId,
+  ) async {
+    var response = await crud.getData("${LinkApi.getBookingsByUser}/$userId");
+
+    print("Raw response from server: $response");
+
+    return response.fold((l) => Left(l), (r) {
+      final bookings = (r as List)
+          .map((b) => BookingHistoryModel.fromJson(b))
+          .toList();
+      return Right(bookings);
+    });
   }
 }

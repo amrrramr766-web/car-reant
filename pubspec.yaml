@@ -8,6 +8,9 @@ environment:
   sdk: ^3.9.0
 
 dependencies:
+  flutter_screenutil: ^5.9.3
+  flutter_bloc: ^9.1.1
+  bloc:  ^9.1.0
   bloc_test: ^10.0.0
   cupertino_icons: ^1.0.8
   dartz: ^0.10.1
@@ -15,9 +18,10 @@ dependencies:
   dots_indicator: ^4.0.1
   flutter:
     sdk: flutter
-  flutter_bloc: ^9.1.1
   flutter_localization: ^0.3.3
+  line_icons: ^2.0.2
   get_it: ^8.2.0
+  google_fonts: ^6.2.0
   http: ^1.5.0
   intl: ^0.20.2
   json_annotation: ^4.9.0
@@ -28,6 +32,8 @@ dependencies:
   syncfusion_flutter_datepicker: ^31.1.19
   equatable: ^2.0.7
   cached_network_image: ^3.4.1
+  material_symbols_icons: ^4.2874.0
+  google_nav_bar: ^5.0.7
 dev_dependencies:
   flutter_lints: ^5.0.0
   flutter_test:

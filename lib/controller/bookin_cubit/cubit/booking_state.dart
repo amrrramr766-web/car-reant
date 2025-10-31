@@ -12,6 +12,11 @@ final class BookingSuccess extends BookingState {
   BookingSuccess(this.message);
 }
 
+class BookingLoaded extends BookingState {
+  final List<dynamic> bookings; // أو BookingDTO
+  BookingLoaded(this.bookings);
+}
+
 final class BookingFailure extends BookingState {
   final String error;
   BookingFailure(this.error);

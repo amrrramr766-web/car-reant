@@ -9,4 +9,8 @@ class HomeData {
   Future<Either<StatusRequest, dynamic>> getData() async {
     return await crud.getData(LinkApi.getCars);
   }
+
+  Future<Either<StatusRequest, dynamic>> getOffers() async {
+    return await crud.getData(LinkApi.getOffers);
+  }
 }
