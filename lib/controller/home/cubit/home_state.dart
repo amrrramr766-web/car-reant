@@ -17,19 +17,20 @@ final class HomeLoaded extends HomeState {
   final List brands;
   final List categories;
   final List<CarModel> carsByBrand;
-
-  HomeLoaded({
+  final List<OfferModel> offers;
+  const HomeLoaded({
     required this.cars,
     required this.brands,
     required this.categories,
     required this.carsByBrand,
+    required this.offers,
   });
   @override
-  List<Object?> get props => [cars, brands, categories, carsByBrand];
+  List<Object?> get props => [cars, brands, categories, carsByBrand, offers];
 }
 
 final class HomeError extends HomeState {
   final String errorMessage;
 
-  HomeError(this.errorMessage);
+  const HomeError(this.errorMessage);
 }

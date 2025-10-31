@@ -1,8 +1,9 @@
-import 'package:car_rent/data/model/on_boarding_model.dart';
+import 'package:car_rent/data/model/offer_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeCarousel extends StatelessWidget {
-  final List<OnBoardingModel> items;
+  final List<OfferModel> items;
   final PageController pageController;
   final ValueChanged<int> onPageChanged;
 
@@ -18,7 +19,7 @@ class HomeCarousel extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: 200,
+          height: 200.h,
           child: PageView.builder(
             controller: pageController,
             itemCount: items.length,
@@ -27,18 +28,18 @@ class HomeCarousel extends StatelessWidget {
               final item = items[index];
               return Card(
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(16.r),
                 ),
-                margin: const EdgeInsets.all(8.0),
+                margin: EdgeInsets.all(8.0.w),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: Image.asset(item.image, fit: BoxFit.cover),
+                  borderRadius: BorderRadius.circular(16.r),
+                  child: Image.asset(item.imageUrl, fit: BoxFit.cover),
                 ),
               );
             },
           ),
         ),
-        const SizedBox(height: 12),
+        SizedBox(height: 12.h),
         Text(
           'Find Your Best Car',
           style: Theme.of(context).textTheme.bodyLarge,

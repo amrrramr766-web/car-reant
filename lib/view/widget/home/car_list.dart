@@ -2,6 +2,7 @@ import 'package:car_rent/core/constant/app_route.dart';
 import 'package:car_rent/data/model/car_model.dart';
 import 'package:car_rent/view/widget/home/car_list_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CarList extends StatelessWidget {
   final PageController pageController;
@@ -35,7 +36,7 @@ class CarList extends StatelessWidget {
                 'See more',
                 style: TextStyle(
                   color: Theme.of(context).primaryColor,
-                  fontSize: 16,
+                  fontSize: 16.sp,
                 ),
               ),
             ),

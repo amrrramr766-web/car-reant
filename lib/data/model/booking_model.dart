@@ -1,15 +1,15 @@
 import 'package:equatable/equatable.dart';
 
 class BookingModel extends Equatable {
-  int? id;
-  String? startDate;
-  String? endDate;
-  double? totalPrice;
-  Enum? status;
-  int? userId;
-  int? carId;
+  final int? id;
+  final String? startDate;
+  final String? endDate;
+  final double? totalPrice;
+  final Enum? status;
+  final int? userId;
+  final int? carId;
 
-  BookingModel({
+  const BookingModel({
     this.id,
     this.startDate,
     this.endDate,
@@ -19,14 +19,18 @@ class BookingModel extends Equatable {
     this.carId,
   });
 
-  BookingModel.fromJson(Map<String, dynamic> json) {
-    id = json['bookingID'];
-    startDate = json['startDate'];
-    endDate = json['endDate'];
-    totalPrice = json['totalPrice'];
-    status = json['status'];
-    userId = json['userID'];
-    carId = json['carID'];
+  factory BookingModel.fromJson(Map<String, dynamic> json) {
+    return BookingModel(
+      id: json['bookingID'],
+      startDate: json['startDate'],
+      endDate: json['endDate'],
+      totalPrice: json['totalPrice'] is int
+          ? (json['totalPrice'] as int).toDouble()
+          : json['totalPrice'] as double?,
+      status: json['status'],
+      userId: json['userID'],
+      carId: json['carID'],
+    );
   }
 
   Map<String, dynamic> toJson() {

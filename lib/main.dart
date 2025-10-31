@@ -1,10 +1,15 @@
 import 'dart:ui';
 
+import 'package:car_rent/controller/auth/login/cubit/login_cubit.dart';
 import 'package:car_rent/controller/home/cubit/home_cubit.dart';
-
+import 'package:car_rent/controller/search/cubit/search_cubit.dart';
+import 'package:car_rent/core/class/crud.dart';
+import 'package:car_rent/data/data_sorse/remote/auth/login.dart';
+import 'package:car_rent/data/data_sorse/remote/search_data.dart';
 import 'package:car_rent/server_locator.dart';
 import 'package:car_rent/view/splasg_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:car_rent/l10n/app_localizations.dart';
@@ -17,9 +22,21 @@ void main() async {
   runApp(
     MultiBlocProvider(
       providers: [
+        BlocProvider(create: (_) => SearchCubit(SearchData(Crud()))),
         BlocProvider<HomeCubit>(create: (_) => sl<HomeCubit>()..fetchCars()),
+        BlocProvider<LoginCubit>(
+          create: (context) =>
+              LoginCubit(LoginData(Crud()))..loadUserFromPrefs(),
+        ),
       ],
-      child: const MyApp(),
+      child: ScreenUtilInit(
+        designSize: const Size(375, 812),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return const MyApp();
+        },
+      ),
     ),
   );
 }

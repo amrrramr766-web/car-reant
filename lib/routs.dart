@@ -18,7 +18,7 @@ Map<String, Widget Function(BuildContext)> routes = {
     return OnBordingScreen(); // pass translation here
   },
   AppRoute.carDetail: (context) {
-    return CarDetail(
+    return CarDetailsPage(
       car: ModalRoute.of(context)!.settings.arguments as CarModel,
     );
   },

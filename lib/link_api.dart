@@ -1,5 +1,5 @@
 class LinkApi {
-  static const String baseUrl = "https://192.168.1.15:7237/api";
+  static const String baseUrl = "https://192.168.1.11:7237/api";
 
   // Users
   static const String login = "$baseUrl/users/login";
@@ -20,9 +20,18 @@ class LinkApi {
 
   static const String getAllBooking = "$baseUrl/Booking";
   static const String addBooking = "$baseUrl/Booking";
+  static const String getBookingsByUser = "$baseUrl/Booking/GetByUser";
 
   static const String getBookingById =
       "$baseUrl/Booking/"; // GET => Get all cars
+
+  static const String getOffers = "$baseUrl/Offers"; // GET => Get all offers
+
+  static const String getSuggestions =
+      "$baseUrl/Suggestions"; // GET => Get all suggestions
+
+  static const String Search =
+      "$baseUrl/Suggestions/Search"; // POST => Send search query
 }
 
 class ApiErrors {

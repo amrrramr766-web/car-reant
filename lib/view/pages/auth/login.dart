@@ -26,7 +26,11 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void _goToHome() {
-      Navigator.push(context, MaterialPageRoute(builder: (_) => Home()));
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (_) => Home()),
+        (route) => false,
+      );
     }
 
     final t = AppLocalizations.of(context);
@@ -34,29 +38,29 @@ class LoginScreen extends StatelessWidget {
       create: (_) => LoginCubit(LoginData(Crud())),
       child: Scaffold(
         appBar: AuthAppBar(title: t?.login ?? 'Login'),
-        body: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(20),
-            child: BlocConsumer<LoginCubit, LoginState>(
-              listener: (context, state) {
-                if (state is LoginLoading) {
-                  CircularProgressIndicator();
-                }
-                if (state is LoginSuccess) {
-                  ScaffoldMessenger.of(
-                    context,
-                  ).showSnackBar(SnackBar(content: Text(state.name)));
-                  _goToHome();
-                } else if (state is LoginFailure) {
-                  ScaffoldMessenger.of(
-                    context,
-                  ).showSnackBar(SnackBar(content: Text(state.errorMessage)));
-                }
-              },
-              builder: (context, state) {
-                return state is LoginLoading
-                    ? const CircularProgressIndicator()
-                    : Column(
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.all(20),
+          child: BlocConsumer<LoginCubit, LoginState>(
+            listener: (context, state) {
+              if (state is LoginLoading) {
+                CircularProgressIndicator();
+              }
+              if (state is LoginSuccess) {
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text(state.name)));
+                _goToHome();
+              } else if (state is LoginFailure) {
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text(state.errorMessage)));
+              }
+            },
+            builder: (context, state) {
+              return state is LoginLoading
+                  ? Center(child: const CircularProgressIndicator())
+                  : Center(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -109,9 +113,9 @@ class LoginScreen extends StatelessWidget {
                             text: t?.login ?? 'Login',
                           ),
                         ],
-                      );
-              },
-            ),
+                      ),
+                    );
+            },
           ),
         ),
       ),

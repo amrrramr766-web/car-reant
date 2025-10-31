@@ -94,65 +94,67 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 key: _formKey,
                 child: state is RegsterLoading
                     ? Center(child: CircularProgressIndicator())
-                    : Column(
-                        children: [
-                          TextFormFieldWidget(
-                            hintText: t?.fullName ?? 'Full Name',
-                            icon: Icons.person,
-                            controller: fullNameController,
-                            validator: validator.fullNameValidator,
-                          ),
-                          const SizedBox(height: 30),
+                    : Center(
+                        child: Column(
+                          children: [
+                            TextFormFieldWidget(
+                              hintText: t?.fullName ?? 'Full Name',
+                              icon: Icons.person,
+                              controller: fullNameController,
+                              validator: validator.fullNameValidator,
+                            ),
+                            const SizedBox(height: 30),
 
-                          TextFormFieldWidget(
-                            hintText: t?.email ?? 'Email',
-                            icon: Icons.email,
-                            controller: emailController,
-                            validator: validator.emailValidator,
-                          ),
-                          const SizedBox(height: 30),
-                          TextFormFieldWidget(
-                            hintText: t?.password ?? 'Password',
-                            icon: Icons.lock,
-                            controller: passwordController,
-                            obscureText: true,
-                            validator: validator.passwordValidator,
-                          ),
+                            TextFormFieldWidget(
+                              hintText: t?.email ?? 'Email',
+                              icon: Icons.email,
+                              controller: emailController,
+                              validator: validator.emailValidator,
+                            ),
+                            const SizedBox(height: 30),
+                            TextFormFieldWidget(
+                              hintText: t?.password ?? 'Password',
+                              icon: Icons.lock,
+                              controller: passwordController,
+                              obscureText: true,
+                              validator: validator.passwordValidator,
+                            ),
 
-                          const SizedBox(height: 30),
-                          TextFormFieldWidget(
-                            hintText: t?.phone ?? 'Phone',
-                            icon: Icons.phone,
-                            controller: phoneController,
-                            validator: validator.phoneValidator,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                t?.alreadyHaveAccount ??
-                                    "Already have an account? ",
-                              ),
-                              GestureDetector(
-                                onTap: _goToLogin,
-                                child: Text(
-                                  t?.login ?? "Login",
-                                  style: TextStyle(
-                                    color: Colors.deepPurple,
-                                    fontWeight: FontWeight.bold,
+                            const SizedBox(height: 30),
+                            TextFormFieldWidget(
+                              hintText: t?.phone ?? 'Phone',
+                              icon: Icons.phone,
+                              controller: phoneController,
+                              validator: validator.phoneValidator,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  t?.alreadyHaveAccount ??
+                                      "Already have an account? ",
+                                ),
+                                GestureDetector(
+                                  onTap: _goToLogin,
+                                  child: Text(
+                                    t?.login ?? "Login",
+                                    style: TextStyle(
+                                      color: Colors.deepPurple,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 30),
-                          Builder(
-                            builder: (ctx) => WidgeButton(
-                              text: t?.register ?? 'Register',
-                              onPressed: () => _register(ctx),
+                              ],
                             ),
-                          ),
-                        ],
+                            const SizedBox(height: 30),
+                            Builder(
+                              builder: (ctx) => WidgeButton(
+                                text: t?.register ?? 'Register',
+                                onPressed: () => _register(ctx),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
               ),
             );
